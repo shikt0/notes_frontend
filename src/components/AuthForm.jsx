@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { api } from "../api";
 
+const testAdminEmail = import.meta.env.VITE_TEST_ADMIN_EMAIL;
+const testAdminPassword = import.meta.env.VITE_TEST_ADMIN_PASSWORD;
+
 export default function AuthForm({ onLogin }) {
   const [mode, setMode] = useState("login");
   const [form, setForm] = useState({ name: "", email: "", password: "", interests: "" });
@@ -51,6 +54,20 @@ export default function AuthForm({ onLogin }) {
     <section className="auth card">
       <h1>{mode === "login" ? "Log in" : "Create account"}</h1>
       <p className="muted">Secure Notes — Care Guide BD assessment</p>
+      {mode === "login" && testAdminEmail && testAdminPassword && (
+        <aside className="test-admin" aria-label="Test admin credentials">
+          <h2>Test admin</h2>
+          <p>Email: <code>{testAdminEmail}</code></p>
+          <p>Password: <code>{testAdminPassword}</code></p>
+          <button type="button" className="secondary" disabled={busy} onClick={() => {
+            setForm((old) => ({ ...old, email: testAdminEmail, password: testAdminPassword }));
+            setError("");
+            setMessage("");
+          }}>
+            Use test admin
+          </button>
+        </aside>
+      )}
       <form onSubmit={handleSubmit}>
         {mode === "register" && (
           <label>Name

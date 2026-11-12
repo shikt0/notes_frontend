@@ -1,5 +1,9 @@
 # React + Vite
 
+## Test admin login
+
+Set `VITE_TEST_ADMIN_EMAIL` and `VITE_TEST_ADMIN_PASSWORD` in the frontend `.env` to display the test credentials and a "Use test admin" button on the login page. Use the same values as the backend's `TEST_ADMIN_EMAIL` and `TEST_ADMIN_PASSWORD`. Both values are public in the frontend when configured; remove them to hide the panel. Restart the dev server or rebuild after changing them.
+
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
 Currently, two official plugins are available:
